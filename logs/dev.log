@@ -1,0 +1,29 @@
+2026-02-16T18:37:22.217985+0900 | INFO | config_log:setup_logging:25 - Логирование настроено для среды: dev
+2026-02-16T18:45:34.055770+0900 | INFO | config_log:setup_logging:25 - Логирование настроено для среды: dev
+2026-02-16T18:46:34.900090+0900 | DEBUG | EnginePostgresql:GetBD:45 - Открытие новой DB-сессии
+2026-02-16T18:46:34.901308+0900 | DEBUG | EnginePostgresql:GetBD:51 - DB-сессия закрыта
+2026-02-16T18:49:12.175547+0900 | INFO | config_log:setup_logging:24 - Логирование настроено для среды: dev
+2026-02-16T18:49:47.445725+0900 | DEBUG | EnginePostgresql:GetBD:45 - Открытие новой DB-сессии
+2026-02-16T18:49:47.447054+0900 | DEBUG | EnginePostgresql:GetBD:51 - DB-сессия закрыта
+2026-02-16T18:50:44.875497+0900 | INFO | config_log:setup_logging:24 - Логирование настроено для среды: dev
+2026-02-16T18:51:13.558997+0900 | DEBUG | EnginePostgresql:GetBD:45 - Открытие новой DB-сессии
+2026-02-16T18:51:13.560672+0900 | DEBUG | EnginePostgresql:GetBD:51 - DB-сессия закрыта
+2026-02-16T18:52:08.353230+0900 | INFO | config_log:setup_logging:24 - Логирование настроено для среды: dev
+2026-02-16T18:52:40.488967+0900 | DEBUG | EnginePostgresql:GetBD:45 - Открытие новой DB-сессии
+2026-02-16T18:52:40.489884+0900 | INFO | main:CreateCinema:34 - POST /cinema/ создание кинотеатра: name=Тест, rating=77.0
+2026-02-16T18:52:40.490179+0900 | INFO | worker:Create:7 - Создание кинотеатра: name=Тест, rating=77.0
+2026-02-16T18:52:40.533492+0900 | SUCCESS | worker:Create:19 - Кинотеатр создан успешно: id=3
+2026-02-16T18:52:40.534533+0900 | DEBUG | EnginePostgresql:GetBD:51 - DB-сессия закрыта
+2026-02-16T18:53:42.766748+0900 | INFO | config_log:setup_logging:24 - Логирование настроено для среды: dev
+2026-02-16T18:53:46.233874+0900 | DEBUG | EnginePostgresql:GetBD:45 - Открытие новой DB-сессии
+2026-02-16T18:53:46.235091+0900 | INFO | main:CreateCinema:34 - POST /cinema/ создание кинотеатра: name=Тест, rating=77.0
+2026-02-16T18:53:46.235256+0900 | INFO | worker:Create:7 - Создание кинотеатра: name=Тест, rating=77.0
+2026-02-16T18:53:46.271003+0900 | SUCCESS | worker:Create:19 - Кинотеатр создан успешно: id=4
+2026-02-16T18:53:46.271166+0900 | SUCCESS | main:CreateCinema:47 - Кинотеатр успешно создан: id=4
+2026-02-16T18:53:46.272908+0900 | DEBUG | EnginePostgresql:GetBD:51 - DB-сессия закрыта
+2026-02-16T19:07:58.688526+0900 | INFO | configFile.config_log:setup_logging:24 - Логирование настроено для среды: dev
+2026-02-16T19:11:35.904693+0900 | INFO | configFile.config_log:setup_logging:24 - Логирование настроено для среды: dev
+2026-02-16T19:13:37.776349+0900 | INFO | configFile.config_log:setup_logging:24 - Логирование настроено для среды: dev
+2026-02-16T19:13:52.114714+0900 | INFO | configFile.config_log:setup_logging:24 - Логирование настроено для среды: dev
+2026-02-16T19:31:57.524554+0900 | INFO | configFile.config_log:setup_logging:24 - Логирование настроено для среды: dev
+2026-02-16T19:32:06.561763+0900 | INFO | configFile.config_log:setup_logging:24 - Логирование настроено для среды: dev
