@@ -5,9 +5,12 @@ from DB.EnginePostgresql import GetBD
 from DB.worker import Create,GetCinema,GetCursor,Delete,Update
 from configFile.config_log import setup_logging
 from loguru import logger
+import uvicorn
 setup_logging()
 
 app = FastAPI()
+
+
 
 @app.get("/cinema/{cinema_id}", response_model=cinemaForAPIResponse)
 def getCinema(cinema_id: int, db: Session = Depends(GetBD)):
@@ -71,3 +74,6 @@ def DeleteCinema(cinemaID: int, db: Session = Depends(GetBD)):
 
     logger.success("Кинотеатр id={} успешно удалён", cinemaID)
     return {"status": "deleted", "cinema_id": cinemaID}
+
+if __name__ == "__main__":
+    uvicorn.run(app, host="127.0.0.1", port=8000)

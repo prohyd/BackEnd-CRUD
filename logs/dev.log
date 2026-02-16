@@ -27,3 +27,6 @@
 2026-02-16T19:13:52.114714+0900 | INFO | configFile.config_log:setup_logging:24 - Логирование настроено для среды: dev
 2026-02-16T19:31:57.524554+0900 | INFO | configFile.config_log:setup_logging:24 - Логирование настроено для среды: dev
 2026-02-16T19:32:06.561763+0900 | INFO | configFile.config_log:setup_logging:24 - Логирование настроено для среды: dev
+2026-02-16T21:51:31.425210+0900 | INFO | configFile.config_log:setup_logging:24 - Логирование настроено для среды: dev
+2026-02-16T21:51:44.173614+0900 | INFO | configFile.config_log:setup_logging:24 - Логирование настроено для среды: dev
+2026-02-16T21:52:26.978512+0900 | INFO | configFile.config_log:setup_logging:24 - Логирование настроено для среды: dev
