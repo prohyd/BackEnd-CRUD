@@ -1,6 +1,6 @@
 from sqlalchemy import select
 from loguru import logger
-from DB.models import Movies
+from repository.models_for_sql import Movies
 
 
 def create_movie(bd, name: str, rait: float, description: str):

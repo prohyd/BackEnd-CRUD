@@ -1,9 +1,9 @@
 from fastapi import FastAPI,Depends
 from sqlalchemy.orm import Session
-from DB.models import MoviesForAPICreate,MoviesForAPIResponse
-from DB.EnginePostgresql import get_bd
-from DB.worker import create_movie,get_movie,get_cursor_movie,delete_movie,update_movie
-from configFile.config_log import setup_logging
+from model.models_for_cinema import MoviesForAPICreate,MoviesForAPIResponse
+from repository.create_connection_to_bd import get_bd
+from repository.worker import create_movie,get_movie,get_cursor_movie,delete_movie,update_movie
+from controller.config_log import setup_logging
 from loguru import logger
 import uvicorn
 setup_logging()
@@ -12,7 +12,7 @@ app = FastAPI()
 
 
 
-@app.get("/cinema/{cinema_id}", response_model=MoviesForAPIResponse)
+@app.get("/cinema/{movie_id}", response_model=MoviesForAPIResponse)
 def getCinema(movie_id_input: int, db: Session = Depends(get_bd)):
     logger.info("GET /cinema/{} запрос получен", movie_id_input)
 
@@ -51,7 +51,7 @@ def CreateCinema(movie_create: MoviesForAPICreate, db: Session = Depends(get_bd)
     return cinema
 
 
-@app.put("/cinema/{cinema_id}", response_model=MoviesForAPIResponse)
+@app.put("/cinema/{movie_id}", response_model=MoviesForAPIResponse)
 def UpdateCinema(movie_id_input: int, columns: str, new_value, db: Session = Depends(get_bd)):
     logger.info(
         "PUT /cinema/{} обновление: поле={}, новое значение={}",
@@ -66,7 +66,7 @@ def UpdateCinema(movie_id_input: int, columns: str, new_value, db: Session = Dep
     return updated
 
 
-@app.delete("/cinema/{cinema_id}")
+@app.delete("/cinema/{movie_id}")
 def DeleteCinema(movie_id_input: int, db: Session = Depends(get_bd)):
     logger.info("DELETE /cinema/{} удаление", movie_id_input)
 

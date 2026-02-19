@@ -4,7 +4,7 @@ from dotenv import load_dotenv
 from sqlalchemy.orm import sessionmaker
 from loguru import logger
 from pathlib import Path
-env_path = Path(__file__).resolve().parent.parent / "DB/.env"
+env_path = Path(__file__).resolve().parent.parent / ".env"
 load_dotenv(env_path)
 
 DB_HOST = os.getenv("DB_HOST")
