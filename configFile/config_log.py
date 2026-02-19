@@ -1,5 +1,4 @@
 from loguru import logger
-import sys
 import yaml
 
 def setup_logging(config_path="configFile/config.yml"):

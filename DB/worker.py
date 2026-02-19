@@ -1,92 +1,92 @@
 from sqlalchemy import select
 from loguru import logger
-from DB.models import cinema
+from DB.models import Movies
 
 
-def Create(bd, name: str, rait: float, description: str):
+def create_movie(bd, name: str, rait: float, description: str):
     logger.info("Создание кинотеатра: name={}, rating={}", name, rait)
 
-    CinemaAdd = cinema(
-        namecinema=name,
-        raiting=rait,
+    movie_add = Movies(
+        name_movie=name,
+        rating=rait,
         description=description
     )
 
-    bd.add(CinemaAdd)
+    bd.add(movie_add)
     bd.commit()
-    bd.refresh(CinemaAdd)
+    bd.refresh(movie_add)
 
-    logger.success("Кинотеатр создан успешно: id={}", CinemaAdd.idcinema)
-    return CinemaAdd
+    logger.success("Кинотеатр создан успешно: id={}", movie_add.id_movie)
+    return movie_add
 
 
-def GetCinema(bd, cinemaID: int):
-    logger.debug("Поиск кинотеатра по id={}", cinemaID)
+def get_movie(bd, movie_id_input: int):
+    logger.debug("Поиск кинотеатра по id={}", movie_id_input)
 
-    sqlcomand = select(cinema).where(cinema.idcinema == cinemaID)
-    result = bd.execute(sqlcomand)
+    sql_command = select(Movies).where(Movies.id_movie == movie_id_input)
+    result = bd.execute(sql_command)
 
     cinema_obj = result.scalar_one_or_none()
 
     if cinema_obj is None:
-        logger.warning("Кинотеатр id={} не найден", cinemaID)
+        logger.warning("Кинотеатр id={} не найден", movie_id_input)
     else:
-        logger.info("Кинотеатр id={} найден", cinemaID)
+        logger.info("Кинотеатр id={} найден", movie_id_input)
 
     return cinema_obj
 
 
-def Update(bd, cinemaID: int, updateColumns: str, newValue):
+def update_movie(bd, movie_id_input: int, update_columns: str, new_value):
     logger.info(
         "Обновление кинотеатра id={} поле={} значение={}",
-        cinemaID,
-        updateColumns,
-        newValue
+        movie_id_input,
+        update_columns,
+        new_value
     )
 
-    cinemaUpd = GetCinema(bd, cinemaID)
+    movie_update = get_movie(bd, movie_id_input)
 
-    if cinemaUpd is None:
-        logger.warning("Обновление невозможно: кинотеатр id={} не найден", cinemaID)
+    if movie_update is None:
+        logger.warning("Обновление невозможно: кинотеатр id={} не найден", movie_id_input)
         return False
 
-    if not hasattr(cinemaUpd, updateColumns):
+    if not hasattr(movie_update, update_columns):
         logger.error(
             "Ошибка обновления: поле '{}' не существует в модели cinema",
-            updateColumns
+            update_columns
         )
         return False
 
-    setattr(cinemaUpd, updateColumns, newValue)
+    setattr(movie_update, update_columns, new_value)
 
     bd.commit()
-    bd.refresh(cinemaUpd)
+    bd.refresh(movie_update)
 
-    logger.success("Кинотеатр id={} успешно обновлён", cinemaID)
-    return cinemaUpd
+    logger.success("Кинотеатр id={} успешно обновлён", movie_id_input)
+    return movie_update
 
 
-def Delete(bd, cinemaID: int):
-    logger.info("Удаление кинотеатра id={}", cinemaID)
+def delete_movie(bd, movie_id_input: int):
+    logger.info("Удаление кинотеатра id={}", movie_id_input)
 
-    cinemaDel = GetCinema(bd, cinemaID)
+    movie_del = get_movie(bd, movie_id_input)
 
-    bd.delete(cinemaDel)
+    bd.delete(movie_del)
     bd.commit()
 
-    logger.success("Кинотеатр id={} успешно удалён", cinemaID)
+    logger.success("Кинотеатр id={} успешно удалён", movie_id_input)
     return True
 
-def GetCursor(bd, skip: int, limit: int):
+def get_cursor_movie(bd, skip: int, limit: int):
     logger.debug("Получение списка кинотеатров: skip={}, limit={}", skip, limit)
 
-    sqlcomand = (
-        select(cinema)
+    sql_command = (
+        select(Movies)
         .offset(skip)
         .limit(limit)
     )
 
-    result = bd.execute(sqlcomand)
+    result = bd.execute(sql_command)
     cinemas = result.scalars().all()
 
     logger.info("Получено {} кинотеатров", len(cinemas))
