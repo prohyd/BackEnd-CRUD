@@ -2,6 +2,8 @@ from sqlalchemy import select
 from loguru import logger
 from repository.models_for_sql import Movies
 
+UPDATABLE_COLUMNS = {"name_movie", "rating", "description"}
+
 
 def create_movie(bd, name: str, rait: float, description: str):
     logger.info("Создание кинотеатра: name={}, rating={}", name, rait)
@@ -48,11 +50,11 @@ def update_movie(bd, movie_id_input: int, update_columns: str, new_value):
 
     if movie_update is None:
         logger.warning("Обновление невозможно: кинотеатр id={} не найден", movie_id_input)
-        return False
+        return None
 
-    if not hasattr(movie_update, update_columns):
+    if update_columns not in UPDATABLE_COLUMNS:
         logger.error(
-            "Ошибка обновления: поле '{}' не существует в модели cinema",
+            "Ошибка обновления: поле '{}' нельзя изменять",
             update_columns
         )
         return False
@@ -70,12 +72,16 @@ def delete_movie(bd, movie_id_input: int):
     logger.info("Удаление кинотеатра id={}", movie_id_input)
 
     movie_del = get_movie(bd, movie_id_input)
+    if movie_del is None:
+        logger.warning("Удаление невозможно: кинотеатр id={} не найден", movie_id_input)
+        return False
 
     bd.delete(movie_del)
     bd.commit()
 
     logger.success("Кинотеатр id={} успешно удалён", movie_id_input)
     return True
+
 
 def get_cursor_movie(bd, skip: int, limit: int):
     logger.debug("Получение списка кинотеатров: skip={}, limit={}", skip, limit)
