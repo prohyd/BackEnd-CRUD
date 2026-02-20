@@ -11,4 +11,4 @@ class MoviesForAPICreate(MoviesForAPI):
 
 class MoviesForAPIResponse(MoviesForAPI):
     id_movie: int
-    model_config = ConfigDict(from_atribute=True)
+    model_config = ConfigDict(from_attributes=True)
